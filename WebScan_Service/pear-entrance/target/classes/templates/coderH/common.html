@@ -1,0 +1,104 @@
+<div th:fragment="commonheadbar">
+    <!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="format-detection" content="telephone=no">
+        <title>title</title>
+
+        <link rel="stylesheet" th:href="@{/res/css/antd.min.css}">
+        <link rel="stylesheet" th:href="@{/res/css/fancySelect.css}"/>
+        <link rel="stylesheet" th:href="@{/res/css/uniform.css}"/>
+        <link rel="stylesheet" th:href="@{/res/css/all.css}"/>
+        <link media="screen" rel="stylesheet" type="text/css" th:href="@{/res/css/screen.css}"/>
+        <script type="text/javascript" th:src="@{/res/js/jquery-1.11.1.min.js}"></script>
+        <script type="text/javascript" th:src="@{/res/js/jquery.bxslider.min.js}"></script>
+        <script type="text/javascript" th:src="@{/res/js/jquery.placeholder.js}"></script>
+        <script type="text/javascript" th:src="@{/res/js/jquery.uniform.min.js}"></script>
+        <script type="text/javascript" th:src="@{/res/js/fancySelect.js}"></script>
+        <script type="text/javascript" th:src="@{/res/js/main.js}"></script>
+
+        <script type="text/javascript" th:src="@{/res/util/axios.min.js}"></script>
+        <script type="text/javascript" th:src="@{/res/util/request.js}"></script>
+        <script type="text/javascript" th:src="@{/res/js/vue.js}"></script>
+        <script type="text/javascript" th:src="@{/res/js/moment.js}"></script>
+        <script type="text/javascript" th:src="@{/res/js/antd.min.js}"></script>
+    </head>
+    <header id="header">
+        <span class="logo"><a th:href="@{/coderH/index}">Web Name</a></span>
+        <div class="bar-holder">
+            <nav id="nav">
+                <ul>
+                    <li><a th:href="@{/coderH/index}">首页</a></li>
+                    <li><a th:href="@{/coderH/about}">关于我们</a></li>
+                    <li th:if="${session.loginUser != null }"><a th:href="@{/coderH/personal}">个人中心</a></li>
+                    <li th:if="${session.loginUser != null }"><a th:href="@{/coderH/logout}">退出登录</a></li>
+                </ul>
+            </nav>
+            <ul class="tools-nav" th:if="${session.loginUser == null }">
+                <li class="login"><a th:href="@{/coderH/login}">登录</a> / <a
+                        th:href="@{/coderH/register}">注册</a></li>
+            </ul>
+        </div>
+    </header>
+</div>
+
+
+<section class="promo" th:fragment="commonbannerbar">
+    <ul class="slider">
+        <li style="background: url(https://s3.bmp.ovh/imgs/2022/05/12/806b98a542b7fc89.png) no-repeat 50% 50%;">
+            <div class="slide-holder">
+                <div class="slide-info">
+
+                </div>
+            </div>
+        </li>
+        <li style="background: url(https://s1.ax1x.com/2022/05/12/O0KUfI.jpg) no-repeat 50% 50%;">
+            <div class="slide-holder">
+                <div class="slide-info">
+
+                </div>
+            </div>
+        </li>
+        <li style="background: url(https://s1.ax1x.com/2022/05/12/O0KUfI.jpg) no-repeat 50% 50%;">
+            <div class="slide-holder">
+                <div class="slide-info">
+                </div>
+            </div>
+        </li>
+    </ul>
+</section>
+
+
+<div class="footer-holder" style="width: 100%;background: #444" th:fragment="commonfootbar">
+    <div class="footer-frame">
+        <div class="footer-content">
+            <div class="col-holder">
+                <div class="col">
+                    <div class="heading">
+                        <h3>关于我们</h3>
+                    </div>
+                    <br>
+                    <ul>
+                        <li>010-123456</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="holder">
+                <p>微信公众号：</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="left-div" th:fragment="commonleftbar">
+    <ul>
+        <li><a th:href="@{/coderH/personal}">我的信息</a></li>
+        <li><a th:href="@{/coderH/updatepwd}">修改密码</a></li>
+    </ul>
+</div>

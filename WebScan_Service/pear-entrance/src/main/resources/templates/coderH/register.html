@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link rel="stylesheet" th:href="@{/res/css/master.css}">
+    <script type="text/javascript" th:src="@{/res/util/axios.min.js}"></script>
+    <script type="text/javascript" th:src="@{/res/util/request.js}"></script>
+    <script type="text/javascript" th:src="@{/res/js/vue.js}"></script>
+    <script type="text/javascript" th:src="@{/res/js/moment.js}"></script>
+    <script type="text/javascript" th:src="@{/res/js/antd.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/res/css/antd.min.css}">
+</head>
+<body>
+<div id="login-window">
+    <div id="login-box" class="glassy-dark-bg rounded-custom">
+        <h2 id="login-header" class="logo-font">注册</h2>
+        <form class="my-3" id="app">
+            <input class="input text-pale-light full-opacity-bg rounded-custom" v-model="registerData.username"
+                   autoComplete="username" placeholder="请输入账号"/><br/>
+            <input class="input text-pale-light full-opacity-bg rounded-custom" type="password"
+                   v-model="registerData.password"
+                   id="password" autoComplete="current-password" placeholder="请输入密码"/><br/>
+            <input class="input text-pale-light full-opacity-bg rounded-custom" type="password"
+                   v-model="registerData.password2"
+                   autoComplete="current-password" placeholder="请输入确认密码"/><br/>
+            <div class="remember-section" style="margin-top: 20px">
+                <label><a th:href="@{/coderH/login}">已有账号，去登录？</a></label>
+            </div>
+            <input style="margin-top: 30px" class="submit-btn" type="button" value="注册" @click="handleRegister"/>
+        </form>
+    </div>
+</div>
+
+<script>
+  var app = new Vue({
+    el: '#app',
+    data() {
+      return {
+        registerData: {}
+      };
+    },
+    created() {
+    },
+    methods: {
+      handleRegister() {
+        const that = this
+        if (!that.registerData.username) {
+          that.$message.error("请输入用户名！")
+          return false
+        }
+        if (!that.registerData.password) {
+          that.$message.error("请输入密码！")
+          return false
+        }
+        if (!that.registerData.password2) {
+          that.$message.error("请输入确认密码！")
+          return false
+        }
+        if (that.registerData.password2 !== that.registerData.password) {
+          that.$message.error("两次密码不一致！")
+          return false
+        }
+
+        post("/toRegister", that.registerData).then(res => {
+          if (res.success) {
+            success(that, "注册成功，即将跳转登录！");
+            setTimeout(() => {
+              window.location.href = "http://localhost:8080/coderH/login";
+            }, 1200)
+          } else {
+            that.$message.error("注册失败！")
+          }
+        })
+      },
+    },
+  })
+</script>
+</body>
+</html>

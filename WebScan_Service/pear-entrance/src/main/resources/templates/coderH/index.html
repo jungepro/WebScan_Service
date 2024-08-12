@@ -1,0 +1,39 @@
+<div th:replace="coderH/common :: commonheadbar"></div>
+<div th:replace="coderH/common :: commonbannerbar"></div>
+
+
+<div id="app">
+
+
+</div>
+
+<div th:replace="coderH/common :: commonfootbar"></div>
+
+<script>
+
+  var app = new Vue({
+    el: '#app',
+    data() {
+      return {
+      };
+    },
+    created() {
+      this.init();
+    },
+    methods: {
+      init() {
+        get('/testGet').then(res => {
+          console.info(res)
+        })
+      }
+    },
+  })
+
+</script>
+<style scoped>
+    #app {
+        margin: 20px auto;
+        width: 80%;
+        min-height: 500px;
+    }
+</style>

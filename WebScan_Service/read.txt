@@ -1,0 +1,9 @@
+后台地址：
+http://localhost:8080/login
+
+管理员账号：
+admin    admin
+
+普通用户账号：
+yh001       yh001
+yh002       yh002

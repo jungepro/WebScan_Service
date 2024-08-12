@@ -1,0 +1,77 @@
+<div th:replace="coderH/common :: commonheadbar"></div>
+<section class="bar">
+    <div class="bar-frame">
+        <ul class="breadcrumbs">
+            <li style="color: #ccc"><a th:href="@{/coderH/index}">首页&nbsp;&nbsp;</a>--->&nbsp;&nbsp;个人中心</li>
+        </ul>
+    </div>
+</section>
+
+<div id="app">
+    <div class="personal-div">
+        <div th:replace="coderH/common :: commonleftbar"></div>
+        <div class="right-div">
+            <a-card title="我的信息">
+                <a-descriptions :column="3">
+                    <a-descriptions-item label="用户名" th:text="${session.loginUser.username}"></a-descriptions-item>
+                    <a-descriptions-item label="用户名" >{{sessionParam}}</a-descriptions-item>
+                </a-descriptions>
+            </a-card>
+        </div>
+    </div>
+</div>
+
+<div th:replace="coderH/common :: commonfootbar"></div>
+
+<script>
+  var app = new Vue({
+    el: '#app',
+    data() {
+      return {
+        sessionParam:''
+      };
+    },
+    created() {
+      this.sessionParam = '[[${session.loginUser.username}]]';
+      this.init()
+    },
+    methods: {
+      init() {
+        console.log(this.sessionParam);
+      }
+    },
+  })
+</script>
+
+<style scoped>
+    #app {
+        margin: 20px auto;
+        width: 80%;
+        min-height: 500px;
+    }
+
+    #app .personal-div {
+        min-height: 500px;
+        width: 80%;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        border-radius: 15px;
+        background: #fff;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+        padding: 30px 30px;
+        display: flex;
+    }
+
+    .left-div {
+        line-height: 2em;
+        text-indent: 2em;
+        width: 15%;
+        border-right: 1px dashed #ccc;
+    }
+
+    .right-div {
+        padding-left: 25px;
+        overflow: auto;
+        width: 100%;
+    }
+</style>

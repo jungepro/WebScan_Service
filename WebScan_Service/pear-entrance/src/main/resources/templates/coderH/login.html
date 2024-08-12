@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/res/css/master.css}">
+    <script type="text/javascript" th:src="@{/res/util/axios.min.js}"></script>
+    <script type="text/javascript" th:src="@{/res/util/request.js}"></script>
+    <script type="text/javascript" th:src="@{/res/js/vue.js}"></script>
+    <script type="text/javascript" th:src="@{/res/js/moment.js}"></script>
+    <script type="text/javascript" th:src="@{/res/js/antd.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/res/css/antd.min.css}">
+</head>
+<body>
+<div id="login-window">
+    <div id="login-box" class="glassy-dark-bg rounded-custom">
+        <h2 id="login-header" class="logo-font">登录</h2>
+        <form class="my-3" id="app">
+            <input class="input text-pale-light full-opacity-bg rounded-custom" name="username" id="username"
+                   v-model="loginData.username"
+                   autoComplete="username" placeholder="请输入账号"/><br/>
+            <input class="input text-pale-light full-opacity-bg rounded-custom" type="password" name="password"
+                   v-model="loginData.password"
+                   id="password" autoComplete="current-password" placeholder="请输入密码"/><br/>
+            <div class="remember-section" style="margin-top: 20px">
+                <label><a th:href="@{/coderH/register}">暂无账号，去注册？</a></label>
+            </div>
+            <input style="margin-top: 30px" class="submit-btn" type="button" value="登录" @click="handleLogin"/>
+        </form>
+    </div>
+</div>
+
+<script>
+
+  var app = new Vue({
+    el: '#app',
+    data() {
+      return {
+        loginData: {}
+      };
+    },
+    created() {
+    },
+    methods: {
+      handleLogin() {
+        const that = this
+        if (!that.loginData.username) {
+          that.$message.error("请输入用户名！")
+          return false
+        }
+        if (!that.loginData.password) {
+          that.$message.error("请输入密码！")
+          return false
+        }
+        post("/toLogin", that.loginData).then(res => {
+          if (res.success) {
+            window.location.href = "http://localhost:8080/coderH/index";
+          } else {
+            error(that, "登录失败，请检查账号密码！");
+          }
+        })
+      },
+    },
+  })
+
+</script>
+</body>
+</html>

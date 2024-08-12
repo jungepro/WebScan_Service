@@ -1,0 +1,74 @@
+# Tomcat
+server:
+  # 端 口
+  port: 8080
+  # Servlet
+  servlet:
+    # Session
+    session:
+      # 超 时 时 间
+      timeout: 120m
+# Spring 配置
+spring:
+  session:
+    timeout: 120m
+  profiles:
+    # 运 行 环 境
+    active: dev
+  activiti:
+    check-process-definitions: false
+  resource:
+    static-locations: classpath:/templates/
+pear:
+  # 权 限 配 置
+  security:
+    # 开 启 超 级 管 理 员 账 号 -- 不需要验证权限
+    super-auth-open: false
+    # 超 级 管 理 员 账 号 -- 不需要验证权限
+    super-admin: admin
+    # 允 许 同 一 账 号 多 端 登 录 个 数
+    maximum: 1
+    remember-key: PEAR_REMEMBER
+    open-api:
+      - /login/**  # 开放登录接口
+      - /system/captcha/** # 开放验证码接口
+      - /assets/** # 开放静态资源
+      - /admin/** # 开放静态资源0
+      - /component/** # 开放静态资源
+      - /favicon.ico # 开放FAVICON
+      #- /coderH/**
+      - /res/**
+  # 上传配置
+  upload:
+    # windows 上传路径
+    windows-path: D:\home\uploads\
+    # linux 上传路径
+    linux-path: /home/uploads/
+    # 是否使用ftp服务器
+    ftp-use: false
+    hostname:
+    port: 0000
+    username:
+    password:
+
+# Page Helper 分页配置
+pagehelper:
+  helper-dialect: mysql
+  params: count=countSql
+  reasonable: true
+  support-methods-arguments: true
+
+# 日志配置
+logging:
+  config: classpath:logback-spring.xml
+
+# Mybatis 配 置
+mybatis-plus:
+  # 配 置 扫 描
+  mapper-locations: classpath*:**/xml/**.xml
+  # 别 名 扫 描
+  type-aliases-package: com.pearadmin
+  ## 日志打印
+  configuration:
+    ## 日志实现
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

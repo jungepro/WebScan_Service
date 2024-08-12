@@ -1,0 +1,38 @@
+<div th:replace="coderH/common :: commonheadbar"></div>
+<section class="bar">
+    <div class="bar-frame">
+        <ul class="breadcrumbs">
+            <li style="color: #ccc"><a th:href="@{/coderH/index}">首页&nbsp;&nbsp;</a>--->&nbsp;&nbsp;关于我们</li>
+        </ul>
+    </div>
+</section>
+
+<div id="app">
+
+</div>
+
+<div th:replace="coderH/common :: commonfootbar"></div>
+
+<script>
+
+  var app = new Vue({
+    el: '#app',
+    data() {
+      return {};
+    },
+    created() {
+    },
+    methods: {
+      init() {
+      }
+    },
+  })
+
+</script>
+<style scoped>
+    #app {
+        margin: 20px auto;
+        width: 80%;
+        min-height: 500px;
+    }
+</style>
